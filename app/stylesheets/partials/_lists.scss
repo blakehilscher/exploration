@@ -1,0 +1,190 @@
+/* Lists */
+
+.list-start-journery{
+  list-style-type: decimal;
+  padding-left:30px;
+  margin-bottom:20px;
+}
+
+.list-fitness{
+  @include list-reset();
+  padding-left:15px;
+  margin-bottom:20px;
+}
+
+.list-links{
+  @include list-float();
+}
+
+.list-trip-itinerary{
+  overflow:auto;
+  margin:20px 0;
+  ul{
+    @include list-reset();
+    border-bottom:1px solid #555;
+  }
+  .title{
+    font-size:18px;
+    line-height:24px;
+    color:adjust-lightness($color-link, 45);
+    margin:0px;
+    border-top:1px solid #222;
+    background:#aaa;
+    padding:15px;
+    overflow:hidden;
+    background:$color-link;    
+    @include background(linear-gradient($color-link, adjust-lightness($color-link, -10)));
+    position:relative;
+    .day{
+      width:13%;
+      margin:0px;
+      float:left;
+      &:focus{
+        outline:0;
+      }
+    }
+    .item{
+      margin:0px;
+      margin-top:3px;
+      width:87%;
+      float:left;
+      color:#000;
+      line-height:20px;
+      &:focus{
+        outline:0;
+      }
+    }
+    &:hover{
+      cursor:pointer;
+      @include background(linear-gradient(adjust-lightness($color-link, -10), adjust-lightness($color-link, -20) ));
+    }
+    &:focus{
+      outline:0;
+    }
+  }
+  .content{
+    padding:15px 15px 30px;
+    color:#fff;
+    border-left:1px solid #555;
+    border-right:1px solid #555;
+  }
+}
+
+.collection-photos{
+  ul{
+    @include list-float;
+    li{
+      width:25%;
+      .column-image{
+        border:2px solid #000;
+      }
+      .inner-column-image{
+        border:1px solid #999;
+      }
+      img{
+        width:100%;
+      }
+    }
+  }
+}
+
+.collection-pages{
+  .list-collection-pages{
+    @include list-reset;
+    .list-collection-pages-item{
+      @include border-top-radius(5px);
+      background:#eee;
+      border:1px solid adjust-lightness(#54B6B5, -10);
+      margin:20px 0;
+      .page-column-title{
+        @include border-top-radius(5px);
+        background:adjust-lightness(#54B6B5, -10);
+        padding:10px;
+        color:#fff;
+      }
+    }
+  }
+}
+
+.collection-snippets{
+  .list-collection-snippets{
+    @include list-float;
+    .list-collection-snippets-item{
+      width:50%;
+      position:relative;
+      .inner-snippet{
+        border:1px solid $color-link;
+      }
+      .column-title{
+        font-weight:bold;
+        background:adjust-saturation(adjust-lightness($color-link, 50), -40);;
+        padding:10px;
+        height:26px;
+        overflow:hidden;
+        padding-right:40px;
+      }
+      .column-slug{
+        position:absolute;
+        right:5px;
+        top:5px;
+        font-size:11px;
+      }
+      .column-content{
+        padding:10px;
+        height:180px;
+        background:#fff;
+        
+        overflow:auto;
+      }
+      .actions{
+        padding-top:5px;
+        background:adjust-saturation(adjust-lightness($color-link, 50), -40);;
+        a{
+          display:block;
+          padding:5px 10px;
+          color:adjust-lightness($color-link, -10);
+          font-weight:bold;
+        }
+      }
+
+    }
+  }
+  .snippet-count-1{
+    .list-collection-snippets-item{
+      width:100%;
+    }
+  }
+  .snippet-count-3,
+  .snippet-count-6,{
+    .list-collection-snippets-item{
+      width:33%;
+    }
+  }
+  .snippet-count-4,
+  .snippet-count-8,{
+    .list-collection-snippets-item{
+      width:25%;
+    }
+  }
+  
+}
+
+.collection-page_snippets,
+.collection-itineraries{
+  .column-content{
+    overflow:auto;
+    height:150px;
+  }
+}
+
+.list-thumbnails{
+  ul{
+    @include list-float;
+    li{
+      width:25%;
+      img{
+        width:100%;
+      }
+    }
+  }
+}

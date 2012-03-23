@@ -1,0 +1,5 @@
+%section.light-content
+  .inner-section-light-content
+    %h1= "Viewing #{@registration.first_name_content}'s Registration"
+    .read-only-form
+      = render 'form', :registration => @registration

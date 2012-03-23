@@ -1,0 +1,11 @@
+- content_for :nav_website do 
+  
+  %li.first{:class => active_page?(:action => 'home')}= link_to "Home", root_path
+  %li{:class => active_page?(:action => 'fitness')}= link_to "Fitness", fitness_path
+  %li{:class => active_page?(:action => 'our_tours')}= link_to "Our Tours", our_tours_path
+  %li{:class => active_page?(:action => 'photos')}= link_to "Photos", photos_path
+  %li{:class => active_page?(:action => 'our_team')}= link_to "Our Team", our_team_path
+  %li{:class => active_page?(:action => 'packages')}= link_to "Packages", packages_path
+  %li.last{:class => active_page?( :action => 'contact_us')}= link_to "Contact Us", contact_us_path
+  
+= render 'layouts/layout'

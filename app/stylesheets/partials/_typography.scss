@@ -1,0 +1,59 @@
+/* Text */
+h1,h2,h3,h4,h5,h6{
+  font-family:Helvetica,Arial,Verdana;
+}
+h1{
+  font-size:30px;
+  line-height:30px;
+  color:$color-link;
+  text-transform:uppercase;
+  margin:0px;
+  margin-bottom:20px;
+}
+h2{
+  font-size:24px;
+  line-height:24px;
+  @include margin-child(20px);
+}
+h3{
+  font-size:18px;
+  line-height:18px;
+  @include margin-child(10px);
+}
+h4{
+  font-size:16px;
+  line-height:16px;
+  @include margin-child(10px);
+}
+h5{
+  font-size:14px;
+  line-height:14px;
+  @include margin-child(10px);
+}
+body{
+  font-family:Arial, verdana;
+  color:$color-body;
+  font-size:$size-body;
+  line-height:19px;
+}
+p{
+  @include margin-child(12px);
+}
+strong{
+  font-weight:bold;
+  color:$color-link;
+}
+small{
+  font-size:11px;
+  font-weight:bold;
+  color:$color-body-less;
+}
+a,
+a:active,
+a:visited{
+  color:adjust-lightness($color-link, -10);;
+  text-decoration:none;
+  &:hover{
+    text-decoration:underline;
+  }
+}

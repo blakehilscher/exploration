@@ -1,0 +1,34 @@
+= form_for([:admin, @itinerary], :html => {:class => 'bh-form', :multipart => true}) do |f|
+  - if @itinerary.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@admin_itinerary.errors.count, "error")
+        prohibited this itinerary from being saved:
+      %ul
+        - @itinerary.errors.full_messages.each do |msg|
+          %li= msg
+
+  .bh-field.bh-textfield
+    .bh-describe= f.label :title
+    .bh-request= f.text_field :title
+    
+  .bh-field.bh-textarea
+    .bh-describe
+      %div= f.label :content, "Itinerary"
+      .thumbnail= link_to(image_tag(@itinerary.image_url(:itinerary_thumb).to_s), @itinerary.image_url.to_s, :target => 'blank' ) if @itinerary.image?
+    .bh-request= f.text_area :content, :class => "mceEditor"
+    
+  .bh-group
+    .bh-field.bh-filefield
+      .bh-describe= f.label :image
+      .bh-request= f.file_field :image
+    
+    .bh-field.bh-textfield
+      .bh-describe= f.label :remote_image_url, "Or upload an image from a website URL"
+      .bh-request= f.text_field :remote_image_url
+    
+  .bh-field.bh-actions
+    .bh-describe
+    .bh-request
+      = f.submit
+      = link_to 'Back', admin_itineraries_path, :class => 'not-important'

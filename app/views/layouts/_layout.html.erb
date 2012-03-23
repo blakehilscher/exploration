@@ -1,0 +1,136 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/b/378 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Exploration Fitness</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+  <!-- CSS: implied media=all -->
+  <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="/stylesheets/application.css">
+  <%= stylesheet_link_tag "application", "jquery.slides" %>
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  
+  <%= yield :stylesheets %>
+  
+  <!-- end CSS-->
+  
+  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+  <%= csrf_meta_tag %>
+  
+  <!-- All JavaScript at the bottom, except for Modernizr / Respond.
+       Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
+       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="/javascripts/modernizr-2.0.6.min.js"></script>
+</head>
+
+<body class="<%= (devise_controller?) ? 'namespace-devise' : '' %> <%= "namespace-#{controller.controller_name}_controller" %> <%= "namespace-#{controller.action_name}_action" %> namespace-<%= @body_class if defined?(@body_class) %>">
+
+  <div id="container">
+    <header class="website">
+      <div class="inner-header-website">
+
+        <a href="/home" class="logo"><img src="/images/logo.png"/></a>
+        <div class="contact-info">
+          <div class="phone-number">
+            <a href="callto:416-551-1784">416-551-1784 </a>
+          </div>
+          <div class="shop-online">
+            <a href="/coming_soon">Shop Online</a>
+          </div>
+        </div>
+        <% if admin_signed_in? %>
+        <div class="devise-links">
+          <%= link_to "Manage Website", admin_root_path %>
+          <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>
+        </div>
+        <% end %>
+      </div>
+      <nav class="website">
+        <div class="inner-nav-website">
+          <ul>
+            <%= yield :nav_website %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!--header ends -->
+    <div id="main" role="main">
+      <% if content_for? :header_main %>
+        <header class="main">
+          <div class="inner-header-main">
+            <%= yield :header_main %>
+          </div>
+        </header>
+      <% end %>
+      <section class="main <%= content_for?(:aside_main) ? 'has-aside-main' : '' %>">
+        <div class="inner-section-main">
+          
+          <% unless notice.blank? %>
+          <p class="notice-message"><%= notice.html_safe %></p>
+          <% end %>
+
+          <% unless alert.blank? %>
+          <p class="alert-message"><%= alert %></p>
+          <% end %>
+          
+          <%= yield %>
+        </div>
+      </section>
+      
+      <% if content_for? :aside_main %>
+      <aside class="main">
+        <div class="inner-aside-main">
+          <%= yield :aside_main %>
+        </div>
+        <!-- inner-aside-main -->
+      </aside>
+      <% end %>
+
+
+    </div>
+    <!-- #main -->
+
+    <footer class="website">
+      <div class="inner-footer-website">
+        <div class="copyright">
+          © Exploration Fitness. All rights reserved
+        </div>
+      </div>
+    </footer>
+
+  </div> <!--! end of #container -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <%= javascript_include_tag %w(jquery jquery_ujs) %>
+  <%= javascript_include_tag 'jquery-ui-1.8.16.min' %>
+  <%= javascript_include_tag 'jquery.colorbox' %>
+  <%= yield :javascripts %>
+  <%= include_tiny_mce_if_needed %>
+  <%= javascript_include_tag 'application' %>
+
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+  
+</body>
+</html>

@@ -1,0 +1,306 @@
+- resources = !resources ? [:admin, :forms, registration] : resources
+= form_for(resources, :html => {:class => 'bh-form', :multipart => true}) do |f|
+  - if registration.errors.any?
+    %h3 The following errors prevented your registration from being submitted:
+    .bh-errors
+      %ul
+        - registration.errors.full_messages.each do |msg|
+          %li= msg
+
+  - if defined? display_admin_approved
+    .bh-group
+      .bh-field.bh-header
+        .bh-describe
+          = f.label :admin_approved_checked, "Admin Approval"
+      .bh-field.bh-checkbox
+        .bh-request= f.check_box :admin_approved_checked
+        .bh-describe= f.label :admin_approved_checked , "Is this registration approved?"
+      .bh-field.bh-actions
+        .bh-describe
+        .bh-request= f.submit "Save Changes"
+
+  .bh-group
+    .bh-field.bh-header
+      .bh-describe= f.label :title_content, "General"
+    
+    .bh-list.bh-textfields
+      .bh-request
+        %ul
+          %li
+            .bh-field.bh-radio_buttons
+              .bh-describe= f.label :title_content_miss , "Title"
+              .bh-request
+                .bh-radio_button
+                  .bh-request= f.radio_button :title_content, "miss"
+                  .bh-describe= f.label :title_content_miss , "Miss"
+
+                .bh-radio_button
+                  .bh-request= f.radio_button :title_content, "mr"
+                  .bh-describe= f.label :title_content_mr , "Mr"
+
+                .bh-radio_button
+                  .bh-request= f.radio_button :title_content, "Mrs"
+                  .bh-describe= f.label :title_content_mrs , "Mrs"
+          %li
+            .bh-field.bh-textfield
+              .bh-describe= f.label :occupation_content, "Occupation"
+              .bh-request= f.text_field :occupation_content
+          
+          
+          %li
+            .bh-field.bh-textfield.bh-required
+              .bh-describe= f.label :first_name_content, "First Name"
+              .bh-request= f.text_field :first_name_content
+          %li
+            .bh-field.bh-textfield.bh-required
+              .bh-describe= f.label :last_name_content, "Last Name"
+              .bh-request= f.text_field :last_name_content
+
+          
+          %li
+            .bh-field.bh-textfield.bh-required
+              .bh-describe= f.label :email_content, "Email"
+              .bh-request= f.text_field :email_content
+          %li
+            .bh-field.bh-textfield.bh-required
+              .bh-describe= f.label :birthday_content, "Birthday"
+              .bh-request= f.text_field :birthday_content, :class => 'datepicker-year-month'
+
+          %li
+            .bh-field.bh-textfield.bh-required
+              .bh-describe= f.label :citizenship_content, "Citizenship"
+              .bh-request= f.text_field :citizenship_content
+          %li
+            .bh-field.bh-radio_buttons
+              .bh-describe= f.label :tshirt_content_s , "T-Shirt Size"
+              .bh-request
+                - names = ["S","M","L", "XL"]
+                - names.count.times do |i|
+                  .bh-radio_button
+                    - name = names[i].gsub(/[^0-9a-z]/i, '').downcase
+                    .bh-request= f.radio_button :tshirt_content, name
+                    .bh-describe= f.label "tshirt_content_#{name}" , names[i]
+      
+  .bh-group
+    .bh-field.bh-header
+      .bh-describe= f.label :street_content, "Location"
+    .bh-list.bh-textfields
+      .bh-request
+        %ul
+          %li    
+            .bh-field.bh-textfield.bh-required
+              .bh-describe= f.label :street_content, "Street"
+              .bh-request= f.text_field :street_content
+          %li
+            .bh-field.bh-textfield.bh-required
+              .bh-describe= f.label :city_content, "City"
+              .bh-request= f.text_field :city_content
+          %li
+            .bh-field.bh-textfield.bh-required
+              .bh-describe= f.label :province_content, "PRVN/ST"
+              .bh-request= f.text_field :province_content
+          %li
+            .bh-field.bh-textfield.bh-required
+              .bh-describe= f.label :postal_content, "Postal Code"
+              .bh-request= f.text_field :postal_content
+          %li
+            .bh-field.bh-textfield.bh-required
+              .bh-describe= f.label :country_content, "Country"
+              .bh-request= f.text_field :country_content
+    
+  .bh-group
+    .bh-field.bh-header.bh-required
+      .bh-describe
+        = f.label :phone_home_content, "Contact"
+
+    .bh-list.bh-textfields
+      .bh-request
+        %ul
+          %li
+            .bh-field.bh-textfield
+              .bh-describe= f.label :phone_home_content, "Home Phone"
+              .bh-request= f.text_field :phone_home_content
+          %li      
+            .bh-field.bh-textfield
+              .bh-describe= f.label :phone_mobile_content, "Mobile Phone"
+              .bh-request= f.text_field :phone_mobile_content
+          %li
+            .bh-field.bh-textfield
+              .bh-describe= f.label :phone_work_content, "Work Phone"
+              .bh-request= f.text_field :phone_work_content
+
+  .bh-group
+    .bh-field.bh-header
+      .bh-describe
+        = f.label :allergy_checked, "Medical"
+    
+    .bh-list.bh-checkboxes.bh-required
+      .bh-describe 
+        %strong= f.label :allergy_content, "Allergies"
+        %div Do you currently have any allergies that you are aware of?
+      .bh-request
+        %ul
+          %li
+            .bh-radio_button
+              .bh-request= f.radio_button :allergy_content, "yes", :class => 'has-dependant', 'data-dependant' => '.data-dependant-1'
+              .bh-describe= f.label :allergy_content_yes, "Yes, I have allergies."
+          %li
+            .bh-radio_button
+              .bh-request= f.radio_button :allergy_content, "no"
+              .bh-describe= f.label :allergy_content_no, "No, I don't have allergies."
+    
+    .bh-field.bh-textarea.data-dependant-1
+      .bh-describe
+        %strong List Allergies
+        %div= f.label :allergy_list_content, "Please list all of them (include food):"
+      .bh-request= f.text_area :allergy_list_content
+      
+    .bh-list.bh-checkboxes
+      .bh-describe 
+        %strong Existing Medical Conditions:
+        %div Please check appropriate box.
+      .bh-request
+        %ul
+          - names = ["Diabetes","Thyroid","Hypertension","MusculoSkeletal Disorder","Ulcer","Post Natal","Anemia","Cancer","Cardiovascular Disease","Arthritis","High Cholesterol","Pre Natal"]
+          - names.count.times do |i|
+            %li
+              .bh-field.bh-checkbox
+                .bh-request= f.check_box "medical_condition_checked_#{i}"
+                .bh-describe= f.label "medical_condition_checked_#{i}", names[i]
+              
+    .bh-list.bh-checkboxes
+      .bh-describe
+        %strong Family History: 
+        %div Please check the appropriate box:
+      
+      .bh-request
+        %ul
+          - names = ["Arthritis","Cancer","Diabetes ","Cardiovascular Disease","High Cholesterol","Hypertension"]
+          - names.count.times do |i|
+            %li
+              .bh-field.bh-checkbox
+                .bh-request= f.check_box "medical_history_checked_#{i}"
+                .bh-describe= f.label "medical_history_checked_#{i}" , names[i]
+                
+    .bh-list.bh-checkboxes.bh-required
+      .bh-describe 
+        %strong= f.label :medication_content, "Medications"
+        %div Are you currently taking any medications?
+      .bh-request
+        %ul
+          %li
+            .bh-radio_button
+              .bh-request= f.radio_button :medication_content, "yes", :class => 'has-dependant', 'data-dependant' => '.data-dependant-2'
+              .bh-describe= f.label :medication_content_yes, "Yes, I use medication."
+          %li
+            .bh-radio_button
+              .bh-request= f.radio_button :medication_content, "no"
+              .bh-describe= f.label :medication_content_no, "No, I don't use medication."
+                
+    .bh-list.bh-textfields.data-dependant-2
+      .bh-request
+        %ul
+          - names = ["Medication","Condition","Medication ","Condition"]
+          - names.count.times do |i|
+            %li
+              .bh-field.bh-textfield
+                .bh-describe= f.label "medication_item_content_#{i}", names[i]
+                .bh-request= f.text_field "medication_item_content_#{i}"
+
+    .bh-list.bh-checkboxes
+      .bh-describe If you are currently being treated by a health professional, please check box:
+      .bh-request
+        %ul
+          - names = ["Naturopath","Chiropractor","Physiotherapist","Massage Therapist","Personal Trainer","Strength Coach"]
+          - names.count.times do |i|
+            %li
+              .bh-field.bh-checkbox
+                .bh-request= f.check_box "medical_treatment_checked_#{i}"
+                .bh-describe= f.label "medical_treatment_checked_#{i}" , names[i]
+
+    .bh-list.bh-checkboxes
+      .bh-describe For special Diet Restrictions, please check appropriate box:
+      .bh-request
+        %ul
+          %li
+            .bh-radio_button
+              .bh-request= f.radio_button :diet_restriction_content, "vegan"
+              .bh-describe= f.label :diet_restriction_content_vegan, "Vegan"
+          %li
+            .bh-radio_button
+              .bh-request= f.radio_button :diet_restriction_content, "vegetarian"
+              .bh-describe= f.label :diet_restriction_content_vegetarian, "Vegetarian"
+          %li
+            .bh-radio_button
+              .bh-request= f.radio_button :diet_restriction_content, "other", :class => 'has-dependant', 'data-dependant' => '.data-dependant-3'
+              .bh-describe= f.label :diet_restriction_content_other, "Other"
+          
+    .bh-field.bh-textarea.data-dependant-3
+      .bh-describe= f.label :diet_other_content, "Please tell us about your other diet restrictions."
+      .bh-request= f.text_area :diet_other_content
+    
+  .bh-group
+    .bh-field.bh-header.bh-required
+      .bh-describe= f.label :hear_about_content, "Adventure Fitness and Travel Packages:"
+
+    .bh-list.bh-radio_buttons
+      .bh-describe= f.label :travel_package_content, "Date: February 24th, 2012-March 4th, 2012.................Patagonia, Chile"
+      .bh-request
+        %ul
+          %li
+            .bh-radio_button
+              .bh-request= f.radio_button :travel_package_content, "01/16/2012"
+              .bh-describe= f.label :travel_package_content_01162012 , "January.16, 2012: 8 week training (16 sessions, 2 days per week)"
+          %li
+            .bh-radio_button
+              .bh-request= f.radio_button :travel_package_content, "01/20/2012"
+              .bh-describe= f.label :travel_package_content_01202012 , "January.20, 2012: 6 week training (12 sessions, 2 days per week)"
+
+    .bh-list.bh-radio_buttons
+      .bh-describe= f.label :travel_package_content, "Date: March 16th, 2012- March 25th, 2012..................Patagonia, Chile"
+      .bh-request
+        %ul
+          %li
+            .bh-radio_button
+              .bh-request= f.radio_button :travel_package_content, "01/27/2012"
+              .bh-describe= f.label :travel_package_content_01272012 , "January.27, 2012: 8 week training (16 sessions, 2 days per week)"
+          %li
+            .bh-radio_button
+              .bh-request= f.radio_button :travel_package_content, "02/10/2012"
+              .bh-describe= f.label :travel_package_content_02102012 , "February.10th, 2012: 6 week training (12 sessions, 2 days per week)"
+              
+    .bh-field.bh-textfield.bh-required
+      .bh-describe= f.label :hear_about_content, "How did you hear about Exploration Fitness?"
+      .bh-request= f.text_field :hear_about_content
+      
+    .bh-field.bh-select.bh-required
+      .bh-describe
+        %strong= f.label :meeting_day_content, "Choose an available meeting day."
+      .bh-request= f.select :meeting_day_content, ['','2011-12-19','2011-12-21','2011-12-23','2011-12-28','2011-12-29', date_range('2012-01-04', '2012-01-31'), date_range('2012-02-01', '2012-02-06')].flatten
+        
+
+    .bh-list.bh-checkboxes.bh-required
+      .bh-describe= f.label :meeting_time_content, "I would rather meet in the:" 
+      .bh-request
+        %ul
+          - names = ["Morning (8-11am)","Afternoon (12-4pm)","Evening (5-7pm)"]
+          - names.count.times do |i|
+            - name = names[i].gsub(/[^0-9a-z]/i, '').downcase
+            %li
+              .bh-radio_button
+                .bh-request= f.radio_button :meeting_time_content, name
+                .bh-describe= f.label "meeting_time_content_#{name}" , names[i]
+
+        
+  .bh-group
+    .bh-field.bh-actions
+      .bh-describe Click to register!
+      .bh-request= f.submit "Register Now!"
+      
+  %div 
+    For any further questions or inquiries, please contact us at 
+    %a{:href => "mailto: info@explorationfitness.com"} info@explorationfitness.com
+  .legal-note PLEASE NOTE: All information provided is confidential and for internal use only. Exploration Fitness works with a secure network and does not share personal information with outside sources. Personal Information will only be shared if clients choose to book travel flights through our staff, in which passport information must be shared with airline. We will make every effort to comply with preferences shown if permissible by Staff Availability.
+  
+- content_for :stylesheets do
+  = stylesheet_link_tag "ui-lightness/jquery-ui-1.8.16.custom"

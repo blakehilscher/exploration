@@ -1,0 +1,98 @@
+$color-dark-chrome: #27343c;
+$color-light-chrome: #384953;
+$color-link-chrome: #2D98DB;
+
+.bh-devise{
+  margin-top:60px;
+  background:$color-dark-chrome;
+  header.website{
+    display:none;
+  }
+  section.main{
+    width:420px;
+    margin:0 auto;
+    float:none;
+    color:#ECF1F3;
+  }
+  a{
+    color:$color-link;
+    &:visited{
+      color:#ECF1F3;
+    }
+  }
+  aside.main{
+    display:none;
+  }
+  .devise-form{
+    font-size:16px;
+    
+    .title{
+      color:$color-link;
+      text-transform:uppercase;
+      text-align:right;
+    }
+    
+    .devise-actions{
+      position:relative;
+      .bh-actions{
+        margin:0;
+        float:left;
+      }
+      .devise-links{
+        float:left;
+        font-size:12px;
+        top:20px;
+        margin-left:10px;
+        position:relative;
+        a{
+          margin:0 5px;
+        }
+      }
+    }
+
+    .bh-field{
+      margin:20px 0 10px;
+      .bh-describe{
+        margin-bottom:10px;
+      }
+    }
+    .bh-textfield,.bh-passwordfield{
+      input{
+        width:380px;
+        @include box-shadow(#555 4px 4px 10px);
+        border:0;
+        @include border-radius(10px);
+        padding:10px;
+        background:#f2f2f2;
+      }
+    }
+    .bh-checkbox{
+      .bh-describe{
+        color:$color-link;
+        font-size:14px;
+      }
+      .bh-describe,
+      .bh-request{
+        display:inline;
+      }
+    }
+    .bh-actions{
+      input,a{
+        padding: 10px 20px;
+        color: #ffffff;
+        font-weight: bold;
+        border:none;
+        @include border-radius(10px);
+        @include margin-child(10px, x);
+        &:hover{
+          cursor:pointer;
+        }
+      }
+      a{
+        display:inline-block;
+        padding:10px;
+        text-decoration:none;
+      }
+    }
+  }
+}

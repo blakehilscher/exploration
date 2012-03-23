@@ -1,0 +1,8 @@
+%h1= defined?(@page.title) ? @page.title : "Thanks for Registering!"
+
+%section.light-content
+  .inner-section-light-content
+    = defined?(@content.content) ? @content.content.html_safe : "We will be in contact soon!"
+          
+- content_for :aside_main do
+  = render '/pages/social_aside'

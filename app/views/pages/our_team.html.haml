@@ -1,0 +1,16 @@
+%section.page-content
+  %header.section-page-content
+    %h1 Our Team
+
+  .content
+    
+    .bios
+      - @bios.each do |bio|
+        .bio
+          %h2.bio-title= "<span class='name'>#{bio.name}</span> #{bio.title}".html_safe
+          - if bio.image?
+            .bio-thumb= image_tag bio.image_url(:bio_thumb)
+          .bio-content= bio.content.html_safe
+          
+- content_for :aside_main do
+  = render 'social_aside'

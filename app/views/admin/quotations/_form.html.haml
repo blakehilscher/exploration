@@ -1,0 +1,24 @@
+= form_for([:admin, @quotation], :html => {:class => 'bh-form form-quotations' }) do |f|
+  - if @quotation.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@quotation.errors.count, "error")
+        prohibited this quotation from being saved:
+      %ul
+        - @quotation.errors.full_messages.each do |msg|
+          %li= msg
+  
+  .bh-field.bh-textarea
+    .bh-describe= f.label :content
+    .bh-request= f.text_area :content
+  .bh-field.bh-textfield.column-signature
+    .bh-describe= f.label :signature
+    .bh-request= f.text_field :signature
+  .bh-field.bh-textfield.column-title
+    .bh-describe= f.label :title
+    .bh-request= f.text_field :title
+  .bh-field.bh-actions
+    .bh-describe
+    .bh-request
+      = f.submit
+      = link_to "Back", admin_quotations_path, :class => 'not-important'

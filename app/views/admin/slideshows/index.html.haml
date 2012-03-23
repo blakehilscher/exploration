@@ -1,0 +1,40 @@
+%section.light-content
+  .inner-section-light-content
+    %h3 Slideshows
+    
+    - if @slideshows.count > 10
+      .bh-form
+        .bh-actions
+          = link_to 'New Slideshow', new_admin_slideshow_path
+      
+    - unless @slideshows.blank?
+      %table.bh-table.table-slideshows.is-sortable{"data-sortable" => "/admin/slideshows/sortable"}
+        %tr
+          %th Slug
+          %th Title
+          %th Slides
+          %th{:width => "140"} Options
+        
+        %tbody.sortable-content
+          - @slideshows.each do |slideshow|
+            %tr{"data-position" => slideshow.position, :id => "slideshow_#{slideshow.id}"}
+              %td= slideshow.slug
+              %td
+                %h3= link_to slideshow.title, edit_admin_slideshow_path(slideshow)
+              %td
+                - unless slideshow.slides.blank?
+                  .list-thumbnails
+                    %ul
+                      - slideshow.slides.each do |slide|
+                        - photo = slide.photos.first
+                        - if not photo.blank? and photo.slide?
+                          %li
+                            .thumbnail= link_to(image_tag(photo.slide_url(:thumb).to_s), photo.slide_url.to_s, :target => 'blank', :rel => 'photo-gallery' )
+                        
+              %td.bh-actions
+                = link_to 'Edit', edit_admin_slideshow_path(slideshow)
+                = link_to 'Destroy', admin_slideshow_path(slideshow), :class=>'not-important', :confirm => 'Are you sure?', :method => :delete
+
+    .bh-form
+      .bh-actions
+        = link_to 'New Slideshow', new_admin_slideshow_path

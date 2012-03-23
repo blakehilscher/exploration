@@ -1,0 +1,30 @@
+%section.light-content
+  .inner-section-light-content
+    %h1 itineraries
+    .bh-table
+      .bh-actions
+        = link_to 'New Itinerary', new_admin_itinerary_path
+        
+    %table.bh-table.collection-itineraries.is-sortable{:data => {:sortable => "/admin/itineraries/sortable"}}
+      %tr
+        %th{:width => 50} Day
+        %th{:width => 150} Title
+        %th Content
+        %th Photo
+        %th{:width => "140"}
+      %tbody.sortable-content
+        - @itineraries.each do |itinerary|
+          %tr{"data-position" => itinerary.position, :id => "itinerary_#{itinerary.id}"}
+            %td.position
+              .sortable-handle.handle-green Drag
+              .count= "Day #{itinerary.position}"
+            %td= itinerary.title
+            %td
+              .column-content= itinerary.content.html_safe
+            %td= image_tag itinerary.image_url(:itinerary_thumb) if itinerary.image?
+            %td.bh-actions
+              = link_to 'Edit', edit_admin_itinerary_path(itinerary)
+              = link_to 'Destroy', admin_itinerary_path(itinerary), :class=>'not-important', :confirm => 'Are you sure?', :method => :delete
+    .bh-table
+      .bh-actions
+        = link_to 'New Itinerary', new_admin_itinerary_path

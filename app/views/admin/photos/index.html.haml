@@ -1,0 +1,29 @@
+
+%section.light-content
+  .inner-section-light-content
+    %h1 Photos
+    .bh-table
+      .bh-actions
+        = link_to 'New Photo', new_admin_photo_path
+    %table.bh-table.table-photos.is-sortable{"data-sortable" => "/admin/photos/sortable"}
+      %tr
+        %th{:width => 50} Position
+        %th Title
+        %th Description
+        %th Photo
+        %th{:width => "140"}
+      %tbody.sortable-content
+        - @photos.each do |photo|
+          %tr{"data-position" => photo.position, :id => "photo_#{photo.id}"}
+            %td.position
+              .sortable-handle.handle-green Drag
+            %td= photo.title
+            %td
+              .column-description= photo.description
+            %td= link_to(image_tag( photo.image_url(:thumb), :class => 'sortable-handle'), photo.image_url, :rel => 'photo-gallery') if photo.image?
+            %td.bh-actions
+              = link_to 'Edit', edit_admin_photo_path(photo)
+              = link_to 'Destroy', admin_photo_path(photo), :class=>'not-important', :confirm => 'Are you sure?', :method => :delete
+    .bh-table
+      .bh-actions
+        = link_to 'New Photo', new_admin_photo_path

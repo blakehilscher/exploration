@@ -1,0 +1,38 @@
+= form_for([:admin, @bio], :html => {:class => 'bh-form', :multipart => true}) do |f|
+  - if @bio.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@admin_bio.errors.count, "error")
+        prohibited this bio from being saved:
+      %ul
+        - @bio.errors.full_messages.each do |msg|
+          %li= msg
+          
+  .bh-field.bh-textfield
+    .bh-describe= f.label :name
+    .bh-request= f.text_field :name
+    
+  .bh-field.bh-textfield
+    .bh-describe= f.label :title
+    .bh-request= f.text_field :title
+    
+  .bh-field.bh-textarea
+    .bh-describe
+      %div= f.label :content, "Bio"
+      .thumbnail= link_to(image_tag(@bio.image_url(:bio_thumb).to_s), @bio.image_url.to_s, :target => 'blank' ) if @bio.image?
+    .bh-request= f.text_area :content, :class => "mceEditor"
+    
+  .bh-group
+    .bh-field.bh-filefield
+      .bh-describe= f.label :image
+      .bh-request= f.file_field :image
+    
+    .bh-field.bh-textfield
+      .bh-describe= f.label :remote_image_url, "Or upload an image from a website URL"
+      .bh-request= f.text_field :remote_image_url
+    
+  .bh-field.bh-actions
+    .bh-describe
+    .bh-request
+      = f.submit
+      = link_to 'Back', admin_bios_path, :class => 'not-important'

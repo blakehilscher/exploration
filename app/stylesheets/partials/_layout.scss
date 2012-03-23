@@ -1,0 +1,89 @@
+/* Size & Position */
+html{
+  background:image-url('bg-html.jpg') top left repeat-x #2c2c2c;
+}
+#container{
+  margin:0 auto;
+}
+
+#main{
+  overflow:visible;
+}
+section.main{
+  &.has-aside-main{
+    float:left;
+    width:710px;
+    margin-right:20px;
+  }
+}
+aside.main{
+  float:left;
+  width:250px;
+  .inner-aside-main{
+  }
+}
+
+#main{
+  width:$width-container + 20px;
+  overflow:hidden;
+  margin:30px auto;
+  padding:0 10px;
+}
+
+section.page-content{
+  padding-right:30px;
+  line-height:19px;
+  font-size:12px;
+  color:#ddd;
+  margin:30px 0;
+  &:first-child{
+    margin-top:0px;
+  }
+  .hilight{
+    color:#01bbc7;
+  }
+  header.section-page-content{
+    margin-bottom:20px;
+    text-transform:uppercase;
+    color:#fff;
+    position:relative;
+    aside.trip-itinerary{
+      position: absolute;
+      left: 200px;
+      bottom: 0px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+
+}
+
+section.quotations{
+  margin-top:13px;
+}
+
+section.light-content{
+  .inner-section-light-content{
+    background-color:#FFF;
+    padding:20px;
+    @include border-radius(10px);
+  }
+}
+
+
+.slideshow{
+  margin-bottom:30px;
+}
+
+header.main{
+  margin-bottom:20px;
+  .inner-header-main{
+    h1{
+      margin-top:0px;
+    }
+    color:#fff;
+  }
+}
+.clearer{
+  clear:both;
+}

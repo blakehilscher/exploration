@@ -1,0 +1,17 @@
+%section.light-content
+  .inner-section-light-content
+    %h1 Pages        
+    .collection.collection-pages
+      %ul.list-collection-pages
+        - @pages.each do |page|
+          %li.list-collection-pages-item
+            .page-column-title
+              %h3= page.title
+            .collection.collection-snippets
+              %ul.list-collection-snippets{:class => "snippet-count-#{page.snippets.count}"}
+                - page.snippets.each do |snippet|
+                  %li.list-collection-snippets-item
+                    .inner-snippet
+                      .column-title= "#{snippet.slug.titleize} - #{snippet.title}"
+                      .column-content= snippet.content.blank? ? '[ empty ]' : snippet.content.html_safe
+                      .actions= link_to "Edit #{snippet.slug.titleize}", edit_admin_page_page_snippet_url(page, snippet)

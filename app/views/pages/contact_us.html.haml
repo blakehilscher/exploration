@@ -1,0 +1,18 @@
+%section.page-content
+  %header.section-page-content
+    %h1 Contact Us
+  
+  .content
+    .content-group
+      %h3= @canada.title
+      = @canada.content.html_safe
+
+    .content-group
+      %h3= @usa.title
+      = @usa.content.html_safe
+    
+    .content-group
+      = @contact.content.html_safe
+
+- content_for :aside_main do
+  = render 'social_aside'

@@ -1,0 +1,27 @@
+%table.bh-table.collection-registrations
+  %thead
+    %tr
+      %th Approved?
+      %th Email
+      %th First Name
+      %th Last Name
+      %th Phone
+      %th Date
+      %th{:width => 200} Options
+  
+  %tbody
+    - registrations.each do |r|
+      %tr
+        %td.column-approved_checked= !r.admin_approved_checked.blank? ? 'APPROVED' : 'AWAITING APPROVAL'
+        %td= link_to r.email_content, admin_forms_registration_path(r)
+        %td= link_to r.first_name_content, admin_forms_registration_path(r)
+        %td= link_to r.last_name_content, admin_forms_registration_path(r)
+        %td= link_to r.phone_home_content, admin_forms_registration_path(r)
+        %td= r.created_at.strftime("%B %d, %y")
+        %td 
+          .bh-actions
+            = link_to 'View', admin_forms_registration_path(r)
+            = link_to 'Edit', edit_admin_forms_registration_path(r)
+            = link_to 'Delete', admin_forms_registration_path(r), :class=>'not-important', :confirm => 'Are you sure?', :method => :delete
+            
+.will_paginate= will_paginate registrations

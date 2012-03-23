@@ -1,0 +1,32 @@
+= form_for([:admin, @page, @snippet], :html => { :multipart => true, :class => 'bh-form' }) do |f|
+  
+  .bh-field.bh-textfield
+    .bh-describe= f.label :title
+    .bh-request= f.text_field :title
+    
+  .bh-field.bh-textfield
+    .bh-describe= f.label :slug
+    .bh-request= f.text_field :slug
+  
+  .bh-field.bh-textarea
+    .bh-describe
+      %div= f.label :content
+      .thumbnail= link_to(image_tag(@snippet.image_url(:thumb).to_s), @snippet.image_url.to_s, :target => 'blank' ) if @snippet.image?
+    .bh-request= f.text_area :content, :class => "mceEditor"
+    
+  .bh-group
+    .bh-field.bh-header.bh-required
+      .bh-describe
+        %h3= f.label :image, "Image Upload"
+    .bh-field.bh-filefield
+      .bh-describe= f.label :image
+      .bh-request= f.file_field :image
+    .bh-field.bh-textfield
+      .bh-describe= f.label :remote_image_url, "Or from an image URL"
+      .bh-request= f.text_field :remote_image_url
+    
+  .bh-field.bh-actions
+    .bh-describe
+    .bh-request
+      = f.submit (@snippet.slug.blank? ? nil : "Update #{@snippet.slug.titleize}")
+      = link_to 'Back', admin_pages_path, :class => 'not-important'

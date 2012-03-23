@@ -1,0 +1,28 @@
+%section.light-content
+  .inner-section-light-content
+    %h1 PageSnippets
+    .bh-table
+      .bh-actions
+        = link_to 'New PageSnippet', new_admin_page_page_snippet_path
+    %table.bh-table.collection-page_snippets.is-sortable{"data-sortable" => "/admin/page_snippets/sortable"}
+      %tr
+        %th{:width => 50} Position
+        %th Title
+        %th Slug
+        %th Content
+        %th{:width => "140"}
+      %tbody.sortable-content
+        - @page.snippets.each do |snippet|
+          %tr{"data-position" => snippet.position, :id => "snippet_#{snippet.id}"}
+            %td.position
+              .sortable-handle.handle-green Drag
+            %td
+              .column-content= snippet.content.html_safe unless snippet.content.blank?
+            %td= snippet.slug
+            %td= snippet.title
+            %td.bh-actions
+              = link_to 'Edit', edit_admin_page_page_snippet_path(@page, snippet)
+              = link_to 'Destroy', admin_page_page_snippet_path(@page, snippet), :class=>'not-important', :confirm => 'Are you sure?', :method => :delete
+    .bh-table
+      .bh-actions
+        = link_to 'New PageSnippet', new_admin_page_page_snippet_path

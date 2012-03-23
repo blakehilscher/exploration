@@ -1,0 +1,30 @@
+= form_for([:admin, @slideshow, @slide, @photo], :html => { :multipart => true, :class => 'bh-form' }) do |f|
+  - if @photo.errors.any?
+    .bh-errors
+      %strong
+        = pluralize(@photo.errors.count, "error")
+        prohibited this photo from being saved:
+      %ul
+        - @photo.errors.full_messages.each do |msg|
+          %li= msg
+          
+  .bh-group
+    .bh-field.bh-filefield
+      .bh-describe= f.label :slide
+      .bh-request= f.file_field :slide
+    
+    .bh-field.bh-textfield
+      .bh-describe= f.label :remote_slide_url
+      .bh-request= f.text_field :remote_slide_url
+  
+  .bh-field.bh-textfield
+    .bh-describe= f.label :link, "Should the image link somewhere?"
+    .bh-request= f.text_field :link
+
+  .thumbnail= link_to(image_tag(@photo.slide_url(:size_3).to_s), @photo.slide_url.to_s, :target => 'blank', :rel => 'photo-gallery' ) if @photo.slide?
+  
+  .bh-field.bh-actions
+    .bh-describe
+    .bh-request
+      = f.submit
+      = link_to "Back", edit_admin_slideshow_path(@slideshow, @slide), :class => 'not-important'

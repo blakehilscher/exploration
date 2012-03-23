@@ -1,0 +1,24 @@
+%section.light-content
+  .inner-section-light-content
+    %h3 Slides
+    .bh-table
+      .bh-actions
+        = link_to 'New Slide', new_admin_slide_path
+    %table.bh-table.table-slides.is-sortable{"data-sortable" => "/admin/slides/sortable"}
+      %tr
+        %th{:width => 50} Position
+        %th Title
+        %th{:width => "140"} Options
+        
+      %tbody.sortable-content
+        - @slides.each do |slide|
+          %tr{"data-position" => slide.position, :id => "slide_#{slide.id}"}
+            %td.position
+              .sortable-handle.handle-green Drag
+            %td= slide.title
+            %td.bh-actions
+              = link_to 'Edit', edit_admin_slide_path(slide)
+              = link_to 'Destroy', admin_slide_path(slide), :class=>'not-important', :confirm => 'Are you sure?', :method => :delete
+    .bh-table
+      .bh-actions
+        = link_to 'New Slide', new_admin_slide_path

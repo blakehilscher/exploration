@@ -1,0 +1,31 @@
+.bh-field.bh-header
+  %h4 Slides
+
+- if slides.count >= 4
+  .bh-field.bh-actions
+    .bh-describe
+    .bh-request
+      = link_to 'New Slide', new_admin_slideshow_slide_path(@slideshow)
+
+- unless slides.blank?
+  %table.bh-table.table-slides.is-sortable{"data-sortable" => "/admin/slideshows/#{@slideshow.id}/slides/sortable"}
+    %tr
+      %th{:width => 50} Position
+      %th Photos
+      %th{:width => 120}
+    
+    %tbody.sortable-content
+      - slides.each do |slide|
+        %tr{"data-position" => slide.position, :id => "slide_#{slide.id}"}
+          %td.position
+            .sortable-handle.handle-green Drag
+          %td= render :partial => '/admin/slide_photos/list', :locals => {:slide => slide}
+          %td.bh-actions
+            = link_to 'Add Photo', new_admin_slideshow_slide_slide_photo_path(@slideshow, slide) unless slide.photos.count >= 4
+            = link_to 'Change Order', admin_slideshow_slide_slide_photos_path(@slideshow, slide) if slide.photos.count > 1
+            = link_to 'Delete Slide', admin_slideshow_slide_path(@slideshow, slide), :class=>'not-important', :confirm => 'Are you sure?', :method => :delete
+          
+.bh-field.bh-actions
+  .bh-describe
+  .bh-request
+    = link_to 'New Slide', new_admin_slideshow_slide_path(@slideshow)

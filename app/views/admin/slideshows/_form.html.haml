@@ -1,0 +1,24 @@
+= form_for([:admin, @slideshow], :html => { :multipart => true, :class => 'bh-form' }) do |f|
+  
+  .bh-group
+    .bh-field.bh-actions
+      %h4 Info
+    
+    .bh-field.bh-textfield
+      .bh-describe= f.label :title
+      .bh-request= f.text_field :title
+
+    - if @slideshow.new_record?
+      .bh-field.bh-textfield
+        .bh-describe= f.label :slug
+        .bh-request= f.text_field :slug
+      
+    .bh-field.bh-actions
+      .bh-describe
+      .bh-request
+        = f.submit
+        = link_to 'Back', admin_slideshows_path, :class => 'not-important'
+        
+  - unless @slideshow.new_record?
+    .bh-group
+      = render '/admin/slides/list', :slides => @slideshow.slides

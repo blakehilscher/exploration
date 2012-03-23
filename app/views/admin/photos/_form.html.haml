@@ -1,0 +1,32 @@
+= form_for([:admin, @photo], :html => { :multipart => true, :class => 'bh-form' }) do |f|
+  .bh-group
+    .bh-field.bh-header.bh-required
+      .bh-describe
+        %h3= f.label :image, "Image Upload"
+    .bh-field.bh-filefield
+      .bh-describe= f.label :image
+      .bh-request= f.file_field :image
+    .bh-field.bh-textfield
+      .bh-describe= f.label :remote_image_url, "Or from an image URL"
+      .bh-request= f.text_field :remote_image_url
+  
+  .bh-group
+    .bh-field.bh-header
+      .bh-describe
+        %h3= f.label :title, "Image Information"
+    .bh-field.bh-textfield
+      .bh-describe= f.label :title
+      .bh-request= f.text_field :title
+    .bh-field.bh-textarea
+      .bh-describe
+        %div= f.label :description
+        .thumbnail= link_to(image_tag(@photo.image_url(:thumb).to_s), @photo.image_url.to_s, :target => 'blank' ) if @photo.image?
+        
+      .bh-request= f.text_area :description
+
+      
+  .bh-field.bh-actions
+    .bh-describe
+    .bh-request
+      = f.submit
+      = link_to 'Back', admin_photos_path, :class => 'not-important'

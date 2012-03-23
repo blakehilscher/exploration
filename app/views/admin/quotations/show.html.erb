@@ -1,0 +1,19 @@
+<section class="light-content">
+  <div class="inner-section-light-content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @quotation.content %>
+</p>
+
+<p>
+  <b>Signature:</b>
+  <%= @quotation.signature %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_quotation_path(@quotation) %> |
+<%= link_to 'Back', admin_quotations_path %>
+</div>
+</section>

@@ -1,0 +1,20 @@
+- content_for :header_main do
+  %h1 Fitness For Life's Ultimate Adventures
+
+%section.page-content
+  .content-group
+    - if @notice.image?
+      .thumbnail-aside
+        .thumbnail.auto-resize= link_to(image_tag(@notice.image_url(:normal).to_s), @notice.image_url.to_s, :target => 'blank' )
+    .content.has-thumbnail-aside
+      %h3= @notice.title
+      = @notice.content.html_safe
+
+%section.page-content
+  .content
+    %h2= @content.title
+    = @content.content.html_safe
+      
+  
+- content_for :aside_main do
+  = render 'social_aside'

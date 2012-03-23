@@ -1,0 +1,17 @@
+%section.page-content
+  %header.section-page-content
+    %h1 Trip Itinerary
+    
+  .content
+
+    .list-trip-itinerary
+      %ul
+        - @itineraries.each do |itinerary|
+          %li
+            .title 
+              %h2.day= "Day #{itinerary.position}:"
+              %h3.item= itinerary.title
+            .content= itinerary.content.html_safe
+      
+- content_for :aside_main do
+  = render 'social_aside'

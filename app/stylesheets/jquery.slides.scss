@@ -1,0 +1,92 @@
+/* Import Config and Helpers */
+/* Helpers */
+@import "compass/css3/";
+@import "compass/utilities/general/min";
+@import "core/helpers/bh_helpers";
+
+$slideshow-width:700px;
+$slideshow-height:360px;
+
+.slideshow{  
+  position: relative;
+  border: 5px solid #555;
+  width: $slideshow-width;
+  height: $slideshow-height;
+  .next{
+    width:image-width('next-button.png');
+    height:image-height('next-button.png');
+    position:absolute;
+    bottom:164px;
+    right:-10px;
+    background:image-url('next-button.png') no-repeat;
+    z-index:15;
+    display:block;
+    text-indent:-9999px;
+  }
+
+  .prev{
+    display:block;
+    width:image-width('prev-button.png');
+    height:image-height('prev-button.png');
+    position:absolute;
+    bottom:164px;
+    left:-10px;
+    z-index:15;
+    text-indent:-9999px;
+    background:image-url('prev-button.png') no-repeat;
+  }
+
+
+  .slides_container{
+    width:$slideshow-width;
+    height:$slideshow-height;
+    overflow:hidden;
+    position:relative;
+    display:none;
+
+    .slide{
+      position:absolute;
+      left:712px;
+      z-index:5;
+      width:$slideshow-width;
+      height:$slideshow-height;
+      display:block;
+      background:#fff;
+      
+      .inner-slide{
+        padding:5px;
+        position:absolute;
+      }      
+    }
+
+    .slide-count-2{
+      .slide-1{
+        right:0px;
+      }
+    }
+    .slide-count-3{
+      .slide-1{
+        right:0px;
+      }
+      .slide-2{
+        right:0px;
+        bottom:0px;
+      }
+    }
+    .slide-count-4{
+      .slide-1{
+        right:0px;
+      }
+      .slide-2{
+        bottom:0px;
+      }
+      .slide-3{
+        right:0px;
+        bottom:0px;
+      }
+    }
+    
+  }
+  
+}  
+

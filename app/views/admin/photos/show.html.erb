@@ -1,0 +1,24 @@
+<section class="light-content">
+ <div class="inner-section-light-content">
+   
+<%= image_tag @photo.image_url(:thumb) if @photo.image? %>
+
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <b>Title:</b>
+  <%= @photo.title %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @photo.image %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_photo_path(@photo) %> |
+<%= link_to 'Back', admin_photos_path %>
+</div>
+</section>

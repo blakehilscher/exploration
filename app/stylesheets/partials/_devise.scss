@@ -1,0 +1,19 @@
+.namespace-devise{
+  section.main{
+    .inner-section-main{
+      background:#eee;
+      @include border-radius(10px);
+      padding:20px;
+    }
+  }
+}
+.devise-links{
+  li{
+    margin-right:10px;
+    padding-right:10px;
+    border-right:1px solid #999;
+    &:last-child{
+      border-right:0;
+    }
+  }
+}

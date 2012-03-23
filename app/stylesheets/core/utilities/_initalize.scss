@@ -1,0 +1,21 @@
+/****************************/
+/* Load Config and Helpers */
+/***************************/
+
+/* Core Variables */
+$color-body: #333;
+$color-body-less:#555;
+$color-link: #607890;
+$color-not-important:#999;
+$size-body: 13px;
+$size-body-small: 11px;
+
+/* Helpers */
+@import "compass/css3/";
+@import "compass/utilities/general/min";
+@import "core/helpers/bh_helpers";
+
+/* Utilities */
+@import "core/utilities/html5boilerplate";
+@import "core/utilities/bh_form";
+@import "core/utilities/bh_devise";

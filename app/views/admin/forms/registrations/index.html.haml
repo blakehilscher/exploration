@@ -1,0 +1,6 @@
+%section.light-content
+  .inner-section-light-content
+    %h1 Registrations
+    = render 'list', :registrations => @registrations
+    .bh-form
+      .bh-actions= link_to 'New Registration', new_admin_forms_registration_path

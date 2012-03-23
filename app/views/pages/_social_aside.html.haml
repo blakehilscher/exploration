@@ -1,0 +1,26 @@
+.list-socials
+  %ul
+    %li
+      %a.sign-up{:href => "/registrations/new"} 
+        .header Click To Register!
+    %li
+      %a.social-twitter{:href => "http://twitter.com/#!/@explorefitness", :target => "blank"}
+        %span.header Twitter
+        %span.sub-text @explorefitness
+    %li
+      %a.social-facebook{:href => "http://facebook.com/explorationfitness", :target => "blank"}
+        %span.header Facebook
+        %span.sub-text explorationfitness
+    %li
+      %a.newsletter{:href => "/newsletter"}
+        %span.header Newsletter
+        %span.sub-text Click here to subscribe
+
+%section.quotations
+
+  - @quotations.each do |quotation|
+    .quotation
+      .content= "\"#{quotation.content}\""
+      .signature
+        .name= quotation.signature.html_safe unless quotation.signature.blank?
+        .title= quotation.title.html_safe unless quotation.title.blank?

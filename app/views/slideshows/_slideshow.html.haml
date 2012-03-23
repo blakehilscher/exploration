@@ -1,0 +1,22 @@
+- unless !slideshow || slideshow.slides.blank?
+  .slideshow
+    .slides_container
+      - slideshow.slides.each do |slide|
+        - next unless slide.photos.count >= 1
+        - count = slide.photos.count
+        - ticker = 0
+        - if count == 1
+          - types = ['size_1']
+        - elsif count == 2
+          - types = ['size_2','size_2']
+        - elsif count == 3
+          - types = ['size_2','size_3','size_3']
+        - elsif count == 4
+          - types = ['size_3','size_3','size_3','size_3']
+          
+        .slide{:class => "slide-count-#{count}"}
+          - slide.photos.each do |photo|
+            - if photo.slide?
+              .inner-slide{:class => "slide-#{ticker}"}
+                = link_to(image_tag(photo.slide_url(types[ticker]).to_s), photo.link ? photo.link : '#')
+            - ticker = ticker + 1

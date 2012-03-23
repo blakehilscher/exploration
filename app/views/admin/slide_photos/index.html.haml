@@ -1,0 +1,18 @@
+%section.light-content
+  .inner-section-light-content
+    %h3 Photos
+    %table.bh-table.table-slides.is-sortable{"data-sortable" => "/admin/slideshows/#{@slideshow.id}/slides/#{@slide.id}/slide_photos/sortable"}
+      %tr
+        %th{:width => 50} Position
+        %th Photo
+        
+      %tbody.sortable-content
+        - @photos.each do |photo|
+          %tr{"data-position" => photo.position, :id => "photo_#{photo.id}"}
+            %td.position
+              .sortable-handle.handle-green Drag
+            %td= link_to(image_tag(photo.slide_url(:size_3).to_s), photo.slide_url.to_s, :target => 'blank', :rel => 'photo-gallery' ) if photo.slide?
+
+    .bh-form
+      .bh-actions
+        = link_to "Back", edit_admin_slideshow_path(@slideshow)

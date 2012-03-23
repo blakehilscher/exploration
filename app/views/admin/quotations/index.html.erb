@@ -1,0 +1,43 @@
+<section class="light-content">
+  <div class="inner-section-light-content">
+
+    <h1>Quotations</h1>
+
+    <div class="bh-table">
+      <div class="bh-actions">
+        <%= link_to 'New Quotation', new_admin_quotation_path %>        
+      </div>
+    </div>
+
+    <table class="bh-table is-sortable" data-sortable="/admin/quotations/sortable">
+      <tr>
+        <th width="50">Position</th>
+        <th>Content</th>
+        <th>Signature</th>
+        <th>Title</th>
+        <th width="140"></th>
+      </tr>
+      <tbody class="sortable-content">
+        <% @quotations.each do |quotation| %>
+        <tr id="quotation_<%= quotation.id %>">
+          <td class="position"><div class="sortable-handle handle-green">Drag</div></td>
+          <td><%= quotation.content %></td>
+          <td><%= quotation.signature %></td>
+          <td><%= quotation.title %></td>
+          <td class="bh-actions">
+            <%= link_to 'Edit', edit_admin_quotation_path(quotation) %>
+            <%= link_to 'Destroy', admin_quotation_path(quotation), :class=>'not-important', :confirm => 'Are you sure?', :method => :delete %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="bh-table">
+      <div class="bh-actions">
+        <%= link_to 'New Quotation', new_admin_quotation_path %>        
+      </div>
+    </div>
+
+  </div>
+</section>

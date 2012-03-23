@@ -1,0 +1,19 @@
+%h2 Sign in
+= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'bh-form'}) do |f|
+  .bh-field.bh-textfield.bh-required
+    .bh-describe= f.label :email
+    .bh-request= f.text_field :email
+    
+  .bh-field.bh-passwordfield.bh-required
+    .bh-describe= f.label :password
+    .bh-request= f.password_field :password
+    
+  .bh-field.bh-checkbox
+    .bh-request= f.check_box :remember_me
+    .bh-describe= f.label :remember_me , "Remember Me?"
+    
+  .bh-field.bh-actions
+    .bh-describe
+    .bh-request= f.submit "Sign in"
+    
+= render :partial => "devise/shared/links"

@@ -1,0 +1,15 @@
+= form_for([:admin, @slideshow, @slide], :html => { :multipart => true, :class => 'bh-form' }) do |f|
+  .bh-group
+    .bh-field.bh-header
+      .bh-describe
+        %h3= f.label :title, "Slide Information"
+    .bh-field.bh-textfield
+      .bh-describe= f.label :title
+      .bh-request= f.text_field :title
+    .bh-field.bh-actions
+      .bh-describe
+      .bh-request
+        = f.submit
+        = link_to 'Add New Photo', new_admin_slideshow_slide_slide_photo_path(@slideshow, @slide) unless @slide.new_record? or @slide.photos.count >= 4
+      
+    = render '/admin/slide_photos/list', :slide => @slide

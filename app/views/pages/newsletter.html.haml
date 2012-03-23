@@ -1,0 +1,17 @@
+%section.light-content
+  .inner-section-light-content
+    %form#mc-embedded-subscribe-form.validate.bh-form{:action => "http://explorationfitness.us4.list-manage.com/subscribe/post?u=612e1550edb88d1112a6798a7&id=119cbfa3e5", :method => "post", :name => "mc-embedded-subscribe-form", :target => "_blank"}
+      .bh-field.bh-header
+        .bh-describe
+          = label_tag :mce_email, "Newsletter Sign up"
+
+      
+      .bh-field.bh-textfield
+        .bh-describe= label_tag :mce_email, "Subscribe to our newsletter"
+        .bh-request
+          %input#mce_email.email{:name => "EMAIL", :placeholder => "email address", :required => "", :type => "email", :value => ""}
+          
+      .bh-field.bh-actions
+        .bh-describe
+        .bh-request= submit_tag "Subscribe"
+            

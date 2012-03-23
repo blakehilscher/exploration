@@ -1,0 +1,8 @@
+.list-thumbnails
+  %ul
+    - slide.photos.each do |photo|
+      %li
+        .thumbnail.sortable-handle= link_to(image_tag(photo.slide_url(:thumb).to_s), photo.slide_url.to_s, :target => 'blank', :rel => 'photo-gallery' ) if photo.slide?
+        .bh-actions.bh-subtle
+          = link_to 'Delete', admin_slideshow_slide_slide_photo_path(@slideshow, slide, photo), :class=>'not-important', :confirm => 'Are you sure?', :method => :delete
+          = link_to 'Edit', edit_admin_slideshow_slide_slide_photo_path(@slideshow, slide, photo), :class => 'not-important'

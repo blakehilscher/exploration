@@ -1,0 +1,9 @@
+%h1= @page.title unless @page.title.blank?
+
+%section.light-content
+  .inner-section-light-content
+    = @content.content.html_safe unless @content.content.blank?
+    
+    
+- content_for :aside_main do
+  = render 'social_aside'

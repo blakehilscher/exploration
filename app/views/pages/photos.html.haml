@@ -1,0 +1,14 @@
+
+%section.photo-content
+  %header.section-photo-content
+    %h1 Photos
+
+  .content
+    .collection.collection-photos
+      %ul
+        - @photos.each do |photo|
+          - if photo.image?
+            %li
+              .column-image
+                .inner-column-image= link_to(image_tag( photo.image_url(:thumb)), photo.image_url(:normal), :target => 'blank', :rel => 'photo-gallery', :title => photo.title << ' ' << photo.description )
+      .will_paginate= will_paginate @photos, :class => 'pagination digg_pagination'

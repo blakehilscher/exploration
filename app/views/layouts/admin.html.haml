@@ -1,0 +1,12 @@
+- @body_class = 'admin'
+- content_for :nav_website do 
+
+  %li.first{:class => active_page?( :controller => 'pages')}= link_to "Manage Pages", admin_pages_path
+  %li{:class => active_page?( :controller => 'slideshows')}= link_to "Slideshows", admin_slideshows_path
+  %li{:class => active_page?( :controller => 'quotations')}= link_to "Quotations", admin_quotations_path
+  %li{:class => active_page?( :controller => 'bios')}= link_to "Team", admin_bios_path
+  %li{:class => active_page?( :controller => 'photos')}= link_to "Photos", admin_photos_path
+  %li{:class => active_page?( :controller => 'itineraries')}= link_to "Itineraries", admin_itineraries_path
+  %li{:class => active_page?( :controller => 'registrations')}= link_to "Registrations", admin_forms_registrations_path
+  
+= render 'layouts/layout'

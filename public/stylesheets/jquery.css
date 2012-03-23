@@ -1,0 +1,103 @@
+/* Import Config and Helpers */
+/* Helpers */
+/**************************************************************
+	
+	@include list-reset(margin, orientation)
+	-
+	Reset a list and force the list items to float left.
+	
+**************************************************************/
+/**************************************************************
+	
+	@include list-float(margin, orientation)
+	-
+	Reset a list and force the list items to float left.
+	
+**************************************************************/
+/**************************************************************
+	
+	@include margin-child(margin, orientation)
+	-
+	Place a margin on top and bottom, but only if not first or last.
+	
+**************************************************************/
+/**************************************************************
+	
+	@include image-replace(image-name, file-extension);
+	-
+	Replace the element with this image
+	
+**************************************************************/
+/**************************************************************
+
+	@include image-replace-auto(image, hover-image, ext)
+  -
+	Replace the element with this image.
+	Automatically generate a css class based on the image name.
+
+**************************************************************/
+/**************************************************************
+
+	@include image-bullet(image-name, image-position, file-extension);
+	-
+	Position an image the left or right of an element.
+		
+**************************************************************/
+/**************************************************************
+
+	@include image-bullet-auto(image-name, image-position, file-extension);
+	-
+	Position an image the left or right of an element.
+	Automatically generate a css class based on the image name.
+	
+**************************************************************/
+/**************************************************************
+
+	@include sized-background-image(image-name, file-extension);
+	-
+	Set the backgroud image and determine the width & height.
+
+**************************************************************/
+.slideshow {
+  position: relative;
+  border: 5px solid #555;
+  width: 700px;
+  height: 360px;
+}
+.slideshow .next {
+  width: 26px;
+  height: 48px;
+  position: absolute;
+  bottom: 164px;
+  right: -10px;
+  background: url('../images/next-button.png?1322855083') no-repeat;
+  z-index: 15;
+  display: block;
+  text-indent: -9999px;
+}
+.slideshow .prev {
+  display: block;
+  width: 26px;
+  height: 48px;
+  position: absolute;
+  bottom: 164px;
+  left: -10px;
+  z-index: 15;
+  text-indent: -9999px;
+  background: url('../images/prev-button.png?1322855083') no-repeat;
+}
+.slideshow .slides_container {
+  width: 700px;
+  height: 360px;
+  overflow: hidden;
+  position: relative;
+  display: none;
+}
+.slideshow .slides_container .slide {
+  position: absolute;
+  left: 712px;
+  z-index: 5;
+  width: 700px;
+  height: 360px;
+  display: block;
+}
